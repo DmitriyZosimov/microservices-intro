@@ -1,0 +1,16 @@
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.ipr
+*.iws
+*.log
+*.tmp
+*.swp
+*.DS_Store
+.gradle/
+/build/
+/out/
+/.idea/
+/.vscode/
