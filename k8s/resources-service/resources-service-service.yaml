@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: k8s-program
+  name: resources-service-service
+  labels:
+    app: resources-service
+    type: app
+spec:
+  selector:
+    app: resources-service
+    type: app
+  ports:
+    - name: resources-service-listener
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 30003
+      port: 8080
+  type: NodePort

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: k8s-program
+  name: songs-service
+  labels:
+    app: songs-service
+    type: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: songs-service
+      type: app
+  template:
+    metadata:
+      labels:
+        app: songs-service
+        type: app
+    spec:
+      containers:
+        - name: songs-service
+          image: song-image:latest
+          imagePullPolicy: Never
+          env:
+            - name: SONGS_MS_NAME
+              value: "songs-service"
+            - name: SONGS_MS_PORT
+              value: "8080"
+            - name: SONGS_DB_URL
+              value: "songs-service-db-service"
+            - name: SONGS_DB_PORT
+              value: "5432"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 2
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
