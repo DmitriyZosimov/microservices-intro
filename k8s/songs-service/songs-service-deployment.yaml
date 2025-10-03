@@ -51,3 +51,10 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 5
+          volumeMounts:
+            - mountPath: /persistent-data
+              name: ss-persistent-volume
+      volumes:
+        - name: ss-persistent-volume
+          persistentVolumeClaim:
+            claimName: songs-service-pvc
