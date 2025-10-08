@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: k8s-program
-  name: songs-service-service
+  namespace: songs-service
+  name: app
   labels:
     app: songs-service
     type: app
@@ -17,3 +17,23 @@ spec:
       nodePort: 30004
       port: 8080
   type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: songs-service
+  name: internal
+  labels:
+    app: songs-service
+    type: app
+spec:
+  selector:
+    app: songs-service
+    type: app
+  ports:
+    - name: songs-service-listener
+      protocol: TCP
+      targetPort: 8080
+      port: 8080
+  type: ClusterIP

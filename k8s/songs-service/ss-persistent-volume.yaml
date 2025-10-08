@@ -17,4 +17,4 @@ spec:
     path: /mnt/data/songs-service
   claimRef:
     name: songs-service-pvc
-    namespace: k8s-program
+    namespace: songs-service

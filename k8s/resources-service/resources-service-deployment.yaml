@@ -23,6 +23,10 @@ spec:
           image: resource-image:latest
           imagePullPolicy: Never
           env:
+            - name: SONGS_MS_URL
+              value: "app.songs-service"
+            - name: SONGS_MS_PORT
+              value: "8080"
             - name: RESOURCES_MS_NAME
               value: "resources-service"
             - name: RESOURCES_MS_PORT

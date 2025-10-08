@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: k8s-program
+  namespace: songs-service
   name: songs-service
   labels:
     app: songs-service
@@ -28,7 +28,7 @@ spec:
             - name: SONGS_MS_PORT
               value: "8080"
             - name: SONGS_DB_URL
-              value: "songs-service-db-service"
+              value: "db"
             - name: SONGS_DB_PORT
               value: "5432"
           ports:

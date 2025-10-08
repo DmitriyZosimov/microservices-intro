@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: songs-service-pvc
-  namespace: k8s-program
+  namespace: songs-service
   labels:
     app: songs-service
     type: app
